@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ profile.name }} — Data Analyst</title>
+<meta name="description" content="{{ profile.tagline }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="nav">
+  <a href="#top" class="nav__mark">K.I.</a>
+  <nav class="nav__links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__text">
+      <p class="eyebrow">Port Harcourt, Nigeria — Data Analyst</p>
+      <h1 class="hero__title">{{ profile.tagline }}</h1>
+      <p class="hero__summary">{{ profile.summary }}</p>
+      <div class="hero__cta">
+        <a href="#projects" class="btn btn--primary">See the work</a>
+        <a href="#contact" class="btn btn--ghost">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="hero__diagram" aria-hidden="true">
+      <svg viewBox="0 0 420 360" class="tree-pipe">
+        <!-- syntax tree half -->
+        <g class="tree" stroke="currentColor" fill="none" stroke-width="1.5">
+          <line x1="80" y1="40" x2="40" y2="90" class="draw d1"/>
+          <line x1="80" y1="40" x2="120" y2="90" class="draw d1"/>
+          <line x1="40" y1="90" x2="20" y2="140" class="draw d2"/>
+          <line x1="40" y1="90" x2="60" y2="140" class="draw d2"/>
+          <line x1="120" y1="90" x2="100" y2="140" class="draw d2"/>
+          <line x1="120" y1="90" x2="140" y2="140" class="draw d2"/>
+        </g>
+        <g class="tree-labels" font-family="'IBM Plex Mono', monospace" font-size="11" fill="currentColor">
+          <text x="80" y="34" text-anchor="middle" class="fade l0">CP</text>
+          <text x="40" y="86" text-anchor="middle" class="fade l1">DP</text>
+          <text x="120" y="86" text-anchor="middle" class="fade l1">VP</text>
+          <text x="20" y="152" text-anchor="middle" class="fade l2">PRO</text>
+          <text x="60" y="152" text-anchor="middle" class="fade l2">D</text>
+          <text x="100" y="152" text-anchor="middle" class="fade l2">V</text>
+          <text x="140" y="152" text-anchor="middle" class="fade l2">trace</text>
+        </g>
+
+        <!-- connecting arrow -->
+        <path d="M170 150 C 210 170, 210 190, 250 210" class="draw d3 arrow" stroke="currentColor" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="currentColor"/>
+          </marker>
+        </defs>
+
+        <!-- data pipeline half -->
+        <g class="pipe" stroke="currentColor" fill="none" stroke-width="1.5">
+          <rect x="230" y="230" width="60" height="30" rx="3" class="draw d4"/>
+          <line x1="290" y1="245" x2="330" y2="245" class="draw d4"/>
+          <rect x="330" y="230" width="60" height="30" rx="3" class="draw d5"/>
+          <line x1="260" y1="260" x2="260" y2="300" class="draw d5"/>
+          <rect x="230" y="300" width="60" height="30" rx="3" class="draw d6"/>
+        </g>
+        <g class="pipe-labels" font-family="'IBM Plex Mono', monospace" font-size="11" fill="currentColor">
+          <text x="260" y="249" text-anchor="middle" class="fade l3">raw.csv</text>
+          <text x="360" y="249" text-anchor="middle" class="fade l4">clean()</text>
+          <text x="260" y="319" text-anchor="middle" class="fade l5">insight</text>
+        </g>
+      </svg>
+      <p class="diagram-caption">structure, wherever it hides</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <p class="section__eyebrow">01 — About</p>
+    <div class="about__grid">
+      <p class="about__lead">
+        Before spreadsheets, it was syntax trees. My master's work traced invisible
+        elements through sentences in English, Arabic, Mandarin, Yoruba, Igbo, Hausa,
+        and Izon — the kind of structure you can't see but have to prove is there.
+        Data analysis asked the same question in a different accent: what's really
+        going on underneath the numbers?
+      </p>
+      <p class="about__detail">
+        I'm {{ profile.full_name }}, based in {{ profile.location }}. I've completed
+        virtual internships with J.P. Morgan, Tata Consultancy Services, and Quantium,
+        alongside a run of Simplilearn certifications in data analytics, SQL, Python,
+        R, and machine learning. I build with free, accessible tools — VS Code, Jupyter,
+        Kaggle — because good analysis shouldn't require an expensive toolkit.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section section--tight">
+    <p class="section__eyebrow">02 — Toolkit</p>
+    <ul class="skills">
+      {% for skill in skills %}
+      <li class="skills__item">
+        <span class="skills__name">{{ skill.name }}</span>
+        <span class="skills__note">{{ skill.note }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="work" class="section">
+    <p class="section__eyebrow">03 — Experience</p>
+    <div class="timeline">
+      {% for job in experience %}
+      <article class="timeline__item">
+        <div class="timeline__head">
+          <h3>{{ job.org }}</h3>
+          <span class="timeline__period">{{ job.period }}</span>
+        </div>
+        <p class="timeline__role">{{ job.role }}</p>
+        <p class="timeline__desc">{{ job.description }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <p class="section__eyebrow">04 — Projects</p>
+    <div class="projects">
+      {% for project in projects %}
+      <article class="project-card">
+        <p class="project-card__tag">{{ project.tag }}</p>
+        <h3 class="project-card__title">{{ project.title }}</h3>
+        <p class="project-card__desc">{{ project.description }}</p>
+        <ul class="project-card__stack">
+          {% for tech in project.stack %}
+          <li>{{ tech }}</li>
+          {% endfor %}
+        </ul>
+        <a href="{{ project.link }}" class="project-card__link">View details →</a>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section section--tight">
+    <p class="section__eyebrow">05 — Education & Certifications</p>
+    <ul class="education">
+      {% for item in education %}
+      <li class="education__item">
+        <span class="education__credential">{{ item.credential }}</span>
+        <span class="education__school">{{ item.school }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact">
+    <p class="section__eyebrow">06 — Contact</p>
+    <h2 class="contact__title">Let's find the structure in your data.</h2>
+
+    <form id="contact-form" class="contact__form">
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary">Send message</button>
+      <p class="form-status" id="form-status" role="status"></p>
+    </form>
+
+    <div class="contact__links">
+      <a href="mailto:{{ socials.email }}">{{ socials.email }}</a>
+      <a href="{{ socials.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="{{ socials.github }}" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© {{ year }} {{ profile.name }}. Built with Flask, HTML & CSS.</p>
+</footer>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
